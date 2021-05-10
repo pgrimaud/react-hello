@@ -1,0 +1,20 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  ci-cd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 #clone repository
+      - uses: actions/setup-node@v2 # install node
+        with:
+          node-version: '14'
+      - run: yarn install # install project dependencies
+      - run: yarn test --watchAll=false # test code
+      - run: yarn build # build application
+      - run: ls -la
+
