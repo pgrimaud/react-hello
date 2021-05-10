@@ -16,4 +16,8 @@ jobs:
       - run: yarn install # install project dependencies
       - run: yarn test --watchAll=false # test code
       - run: yarn build # build application
-
+      - uses: akhileshns/heroku-deploy@v3.12.12 # deploy to heroku
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
